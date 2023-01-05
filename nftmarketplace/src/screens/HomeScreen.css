@@ -1,0 +1,57 @@
+.marketplace{
+    padding-top: 50px;
+    /* background-color:bisque */
+}
+
+.title{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+}
+h1{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+h3{
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+}
+p{
+    font-family: 'Raleway', sans-serif;
+}
+
+.profilepic{
+    width:55px;
+    height:auto;
+    /* padding-left: ; */
+}
+
+.top-sales-list{
+    padding-top:15px;
+}
+.legend{
+    font-size: 12px;
+    font-weight: lighter;
+    font-family: 'Raleway', sans-serif;
+}
+.title{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    padding-right: 20px;
+    /* margin: 20px; */
+}
+/* .form-outline{
+    margin-bottom: 20px;
+} */
+.input{
+    margin-bottom: 20px;
+}
+
+.navbar-items{
+    padding: 20px;
+    /* background-color: aqua; */
+}
+.icons{
+    padding-left: 10px;
+    padding-right: 10px;
+}

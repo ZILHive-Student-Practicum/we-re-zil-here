@@ -72,7 +72,7 @@ function LoginScreen() {
             <p className="text-center raleway-font">
                 Closed Sea is a platform for buying, selling, and trading
                 non-fungible tokens (NFTs) with a focus on community and social
-                interaction.Our platform allows artists to promote their NFT
+                interaction. Our platform allows artists to promote their NFT
                 collections with their friends and followers.
             </p>
             <p className="text-center raleway-font">
