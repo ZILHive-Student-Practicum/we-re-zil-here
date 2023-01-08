@@ -94,7 +94,7 @@ function HomeScreen() {
         // console.log(event.target.files[0].name);
         // setImage({
         //     imageName: event.target.files[0].name,
-        // });
+        // }); 
         imageName = event.target.files[0].name;
         // this.setState({ selectedFile: event.target.files[0] });
         // console.log(image.imageName);
