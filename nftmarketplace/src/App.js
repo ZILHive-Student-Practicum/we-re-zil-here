@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
  
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
-import Buying from "./screens/Buying";
+import BuyScreen from "./screens/BuyScreen";
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<LoginScreen />}></Route>
                 <Route path="/home" element={<HomeScreen />}></Route>
-                <Route path="/buy" element={<Buying />}></Route>
+                <Route path="/buy" element={<BuyScreen />}></Route>
             </Routes>
         </BrowserRouter>
     );
