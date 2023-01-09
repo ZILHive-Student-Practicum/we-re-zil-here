@@ -67,7 +67,7 @@ function HomeScreen() {
         setNewPost({ ...newPost, [e.target.name]: e.target.value });
 
         // console.log("header:  ", newPost.header);
-        console.log("caption:  ", newPost.text);
+        // console.log("caption:  ", newPost.text);
     };
 
     const addPost = () => {
@@ -81,24 +81,16 @@ function HomeScreen() {
 
         setPosts((posts) => [...posts, post]);
 
-        // setPosts();
+        imageName = "";
 
-        // console.log("header:  ", newPost.header);
-        // console.log("text:  ", newPost.text);
+        setNewPost({ [newPost.text]: "" });
     };
 
     let imageName = "";
 
     const onFileChange = (event) => {
-        // Update the state
-        // console.log(event.target.files[0].name);
-        // setImage({
-        //     imageName: event.target.files[0].name,
-        // });
         imageName = event.target.files[0].name;
-        // this.setState({ selectedFile: event.target.files[0] });
-        // console.log(image.imageName);
-        console.log(imageName);
+        // console.log(imageName);
     };
 
     const [postModal, setPostModal] = useState(false);
@@ -151,9 +143,24 @@ function HomeScreen() {
                                 <MDBNavbarLink href="#"></MDBNavbarLink>
                             </MDBNavbarItem>
 
-                            <MDBIcon far icon="user-circle" size='2x' className="icons" />
-                            <MDBIcon fas icon="wallet" size='2x'  className="icons"/>
-                            <MDBIcon fas icon="shopping-cart" size='2x'  className="icons"/>
+                            <MDBIcon
+                                far
+                                icon="user-circle"
+                                size="2x"
+                                className="icons"
+                            />
+                            <MDBIcon
+                                fas
+                                icon="wallet"
+                                size="2x"
+                                className="icons"
+                            />
+                            <MDBIcon
+                                fas
+                                icon="shopping-cart"
+                                size="2x"
+                                className="icons"
+                            />
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBContainer>
@@ -347,14 +354,14 @@ function HomeScreen() {
                                 value={newPost.text}
                                 onChange={onChangeText}
                             ></MDBInput>
-                            {/* <MDBFile
+                            <MDBFile
                                 label="Add your photos here"
                                 id="customFile"
                                 onChange={onFileChange}
-                            ></MDBFile> */}
-                            <div>
+                            ></MDBFile>
+                            {/* <div>
                                 <input type="file" onChange={onFileChange} />
-                            </div>
+                            </div> */}
                         </MDBModalBody>
                         <MDBModalFooter>
                             <MDBBtn onClick={addPost}>Post</MDBBtn>
