@@ -1,7 +1,7 @@
 import React from "react";
 import { MDBBtn, MDBContainer } from "mdb-react-ui-kit";
 import { useLocation, useNavigate } from "react-router-dom";
-
+ 
 import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./LoginScreen.css";
 
@@ -68,9 +68,9 @@ function LoginScreen() {
     return (
         <MDBContainer className="pt-5 my-5 d-flex flex-column w-50 ">
             {/* <img src="logoWithName.png" alt="logo"></img> */}
-            <h1 className="text-center logo">Closed Sea</h1>
+            <h1 className="text-center logo">Minty</h1>
             <p className="text-center raleway-font">
-                Closed Sea is a platform for buying, selling, and trading
+                Minty is a platform for buying, selling, and trading
                 non-fungible tokens (NFTs) with a focus on community and social
                 interaction. Our platform allows artists to promote their NFT
                 collections with their friends and followers.

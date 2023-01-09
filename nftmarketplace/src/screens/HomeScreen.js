@@ -89,6 +89,11 @@ function HomeScreen() {
     let imageName = "";
 
     const onFileChange = (event) => {
+        // Update the state
+        // console.log(event.target.files[0].name);
+        // setImage({
+        //     imageName: event.target.files[0].name,
+        // }); 
         imageName = event.target.files[0].name;
         // console.log(imageName);
     };
