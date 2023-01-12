@@ -1,37 +1,25 @@
 import React from "react";
 import { MDBBtn, MDBContainer } from "mdb-react-ui-kit";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
  
 import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./LoginScreen.css";
 
-const { Zilliqa } = require("@zilliqa-js/zilliqa");
-const { BN, Long, units } = require("@zilliqa-js/util");
-
-const { StatusType, MessageType } = require("@zilliqa-js/subscriptions");
-
 function LoginScreen() {
     const navigate = useNavigate();
-
-    //-------------------------------------
-    //* Get the current account in ZilPay *
-    //-------------------------------------
     const getCurrentAccount = () => {
         window.zilPay.wallet.connect().then(function (connected) {
             console.log(connected);
             console.log(window.zilPay.wallet.net);
             console.log(window.zilPay.wallet.defaultAccount);
 
-            //monitor if the user chnages the network from mainnet to testnet vice versa
-            // subscribe to network changes
             window.zilPay.wallet
                 .observableNetwork()
                 .subscribe(function (network) {
                     console.log("Network has been changed to " + network);
                 });
 
-            //monitor if the user changes the account number in the zillpay wallet extension on web browser
-            // subscribe to user account changes
+            
             window.zilPay.wallet
                 .observableAccount()
                 .subscribe(function (account) {
@@ -52,11 +40,8 @@ function LoginScreen() {
             navigate("/home");
         });
     };
-    //-----------------------------------------------
-    //* Check if ZilPay is installed on the browser *
-    //-----------------------------------------------
+    
     const connectZilPay = async (e) => {
-        console.log("here");
         if (window.zilPay) {
             console.log("ZilPay Present");
             getCurrentAccount();
@@ -67,7 +52,6 @@ function LoginScreen() {
 
     return (
         <MDBContainer className="pt-5 my-5 d-flex flex-column w-50 ">
-            {/* <img src="logoWithName.png" alt="logo"></img> */}
             <h1 className="text-center logo">Minty</h1>
             <p className="text-center raleway-font">
                 Minty is a platform for buying, selling, and trading
@@ -84,7 +68,6 @@ function LoginScreen() {
                     Connect here
                 </MDBBtn>
             </div>
-            {/* <img src="sea.png" alt="logo"></img> */}
         </MDBContainer>
     );
 }

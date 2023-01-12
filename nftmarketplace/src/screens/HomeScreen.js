@@ -3,21 +3,14 @@ import {
     MDBContainer,
     MDBNavbar,
     MDBNavbarBrand,
-    MDBNavbarToggler,
     MDBIcon,
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
     MDBBtn,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
     MDBCollapse,
     MDBRow,
     MDBCol,
-    MDBListGroup,
-    MDBListGroupItem,
     MDBModal,
     MDBModalDialog,
     MDBModalContent,
@@ -26,18 +19,13 @@ import {
     MDBModalBody,
     MDBModalFooter,
     MDBInput,
-    MDBTextArea,
-    MDBFile,
 } from "mdb-react-ui-kit";
-
+import getNFTContractState from "../blockchain functions/fetchstate";
+import DeployNFT from "../blockchain functions/deploy_collection_contract";
 import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./HomeScreen.css";
 import Post from "./Post";
 
-// const { Zilliqa } = require("@zilliqa-js/zilliqa");
-// const { BN, Long, units } = require("@zilliqa-js/util");
-
-// const { StatusType, MessageType } = require("@zilliqa-js/subscriptions");
 
 function HomeScreen() {
     const [showBasic, setShowBasic] = useState(false);
@@ -45,7 +33,8 @@ function HomeScreen() {
     // const [posts, setPosts] = useState([]);
 
     const [newPost, setNewPost] = useState({
-        text: "",
+        name: "",
+        symbol:""
         // imageU: "",
     });
 
@@ -63,39 +52,29 @@ function HomeScreen() {
     ]);
 
     const onChangeText = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         setNewPost({ ...newPost, [e.target.name]: e.target.value });
-
-        // console.log("header:  ", newPost.header);
-        // console.log("caption:  ", newPost.text);
     };
 
     const addPost = () => {
         toggleShow();
-
+        DeployNFT(newPost.name,newPost.symbol)
         const post = {
             username: "theNFTKing",
-            caption: newPost.text,
-            imageUrl: imageName,
+            caption: newPost.name,
         };
 
         setPosts((posts) => [...posts, post]);
 
         imageName = "";
 
-        setNewPost({ [newPost.text]: "" });
+        setNewPost({ [newPost.name]: "" });
     };
 
     let imageName = "";
 
     const onFileChange = (event) => {
-        // Update the state
-        // console.log(event.target.files[0].name);
-        // setImage({
-        //     imageName: event.target.files[0].name,
-        // }); 
         imageName = event.target.files[0].name;
-        // console.log(imageName);
     };
 
     const [postModal, setPostModal] = useState(false);
@@ -166,6 +145,7 @@ function HomeScreen() {
                                 size="2x"
                                 className="icons"
                             />
+                        
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBContainer>
@@ -318,8 +298,8 @@ function HomeScreen() {
                         </MDBCol>
 
                         <MDBCol>
-                            <MDBBtn size="sm" onClick={toggleShow}>
-                                Add Post
+                            <MDBBtn size="m" onClick={toggleShow}>
+                                Create Collection
                             </MDBBtn>
                         </MDBCol>
                     </MDBRow>
@@ -342,7 +322,7 @@ function HomeScreen() {
                 <MDBModalDialog centered>
                     <MDBModalContent>
                         <MDBModalHeader>
-                            <MDBModalTitle>Create a Post</MDBModalTitle>
+                            <MDBModalTitle>Create a Collection</MDBModalTitle>
                             <MDBBtn
                                 className="btn-close"
                                 color="none"
@@ -351,22 +331,21 @@ function HomeScreen() {
                         </MDBModalHeader>
                         <MDBModalBody>
                             <MDBInput
-                                label="Enter your caption"
-                                id="form1"
+                                label="Enter Collection Name"
+                                id="input1"
                                 type="text"
                                 className="input"
-                                name="text"
-                                value={newPost.text}
+                                name="text1"
                                 onChange={onChangeText}
                             ></MDBInput>
-                            <MDBFile
-                                label="Add your photos here"
-                                id="customFile"
-                                onChange={onFileChange}
-                            ></MDBFile>
-                            {/* <div>
-                                <input type="file" onChange={onFileChange} />
-                            </div> */}
+                            <MDBInput
+                                label="Enter Collection Symbol"
+                                id="input2"
+                                type="text"
+                                className="input"
+                                name="text2"
+                                onChange={onChangeText}
+                            ></MDBInput>
                         </MDBModalBody>
                         <MDBModalFooter>
                             <MDBBtn onClick={addPost}>Post</MDBBtn>

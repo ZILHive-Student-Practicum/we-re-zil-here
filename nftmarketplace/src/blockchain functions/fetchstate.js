@@ -1,11 +1,10 @@
-const axios = require("axios");
+import axios from "axios";
 
 const { Zilliqa } = require("@zilliqa-js/zilliqa");
 const zilliqa = new Zilliqa("https://dev-api.zilliqa.com");
-
 // Standard fungible token deployed on devnet
-const nftContract = "0xaaad3befb37afbc3beeef284a7f270999eb8be78";
-const userAddress = "0x36B9Df8C9D33231fEb31627ea7dF39CE15Bb3cc5";
+const nftContract = "0x89b08fca783f0ee47af6ef97409da1f6b733c899";
+const userAddress = "0x21e7dBB129a35025e09C7AA698407FC1432Fbfe1";
 
 async function getNFTContractState(nft_contract, token_id) {
   const balance_row = await getValueFromMapKey(nftContract, "balances", userAddress);
@@ -21,28 +20,15 @@ async function getNFTContractState(nft_contract, token_id) {
     "token_uris",
     String(token_id)
   );
-
-//is token_uri set?
-  // False =>
-    // is base_uri set?
-      // True =>
-        // use base_uri
-      // False =>
-        // neither are set
-  // True =>
-    // use token_uri
-
-  // is token_uri set for token 2?
+    console.log(token_owner_row)
   turi_tokenuri_set !== undefined || turi_tokenuri_set !== null
     ? console.log(`token ${token_id} has a token_uri, and a base API is set`)
     : process.abort(`token ${token_id} exception`);
 
-  // is base_uri set for token 12?
   turi_baseuri_set === undefined || turi_baseuri_set === null
     ? process.abort(`token ${token_id} exception`)
     : console.log(`token ${token_id} has no token_uri, as it uses a base API`);
 
-  // is token_uri && base_uri both not set?
   turi_tokenuri_set !== undefined ||
   (turi_tokenuri_set !== null && turi_baseuri_set === undefined) ||
   turi_baseuri_set === null
@@ -78,5 +64,4 @@ async function getValueFromMapKey(nftContract, contract_state_field, map_key) {
   return JSON.stringify(chainResponse.result);
 }
 
-getNFTContractState(nftContract, 2);
-getNFTContractState(nftContract, 12);
+export default getNFTContractState;

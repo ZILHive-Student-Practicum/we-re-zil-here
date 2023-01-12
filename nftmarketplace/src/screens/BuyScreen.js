@@ -3,33 +3,16 @@ import {
     MDBContainer,
     MDBNavbar,
     MDBNavbarBrand,
-    MDBNavbarToggler,
     MDBIcon,
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
     MDBBtn,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
     MDBCollapse,
     MDBRow,
     MDBCol,
-    MDBListGroup,
-    MDBListGroupItem,
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
     MDBInput,
-    MDBTextArea,
-    MDBFile,
 } from "mdb-react-ui-kit";
-
 import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./BuyScreen.css";
 

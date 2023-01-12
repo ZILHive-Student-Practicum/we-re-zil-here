@@ -16,7 +16,7 @@ const privateKey = "8f471919298b9853da87bb82da6336ec4b9e66a045c821af6783d095e3d4
 
 zilliqa.wallet.addByPrivateKey(privateKey);
 
-const zrc6contract = "0xaaad3befb37afbc3beeef284a7f270999eb8be78";
+const zrc6contract = "0x89b08fca783f0ee47af6ef97409da1f6b733c899";
 
 async function IncrementingNonceBatchMint(nonce, n) {
   try {
