@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {
     MDBContainer,
     MDBNavbar,
@@ -8,7 +8,6 @@ import {
     MDBNavbarItem,
     MDBNavbarLink,
     MDBBtn,
-    MDBCollapse,
     MDBRow,
     MDBCol,
     MDBModal,
@@ -19,6 +18,7 @@ import {
     MDBModalBody,
     MDBModalFooter,
     MDBInput,
+    MDBCollapse,
 } from "mdb-react-ui-kit";
 import getNFTContractState from "../blockchain functions/fetchstate";
 import DeployNFT from "../blockchain functions/deploy_collection_contract";
@@ -26,18 +26,14 @@ import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./HomeScreen.css";
 import Post from "./Post";
 
-
 function HomeScreen() {
     const [showBasic, setShowBasic] = useState(false);
-
-    // const [posts, setPosts] = useState([]);
-
-    const [newPost, setNewPost] = useState({
-        name: "",
-        symbol:""
-        // imageU: "",
-    });
-
+    const [postModal, setPostModal] = useState(false);
+    const toggleShow = () => setPostModal(!postModal);
+    
+    const [name, setName] = useState("");
+    const [symbol, setSymbol] = useState("");
+    
     const [posts, setPosts] = useState([
         {
             username: "blessingthebobo",
@@ -50,36 +46,19 @@ function HomeScreen() {
             imageUrl: "post2.png",
         },
     ]);
-
-    const onChangeText = (e) => {
-        e.preventDefault();
-        setNewPost({ ...newPost, [e.target.name]: e.target.value });
-    };
-
-    const addPost = () => {
-        toggleShow();
-        DeployNFT(newPost.name,newPost.symbol)
+    
+    const addPost = ()=>{
         const post = {
             username: "theNFTKing",
-            caption: newPost.name,
+            caption: name,
         };
-
         setPosts((posts) => [...posts, post]);
+    }
 
-        imageName = "";
-
-        setNewPost({ [newPost.name]: "" });
+    const DeployCollection = async (e) => {
+        await DeployNFT(name,symbol)
+        toggleShow();
     };
-
-    let imageName = "";
-
-    const onFileChange = (event) => {
-        imageName = event.target.files[0].name;
-    };
-
-    const [postModal, setPostModal] = useState(false);
-
-    const toggleShow = () => setPostModal(!postModal);
 
     return (
         <MDBContainer>
@@ -88,7 +67,6 @@ function HomeScreen() {
                     <MDBNavbarBrand className="title" href="#">
                         Minty
                     </MDBNavbarBrand>
-
                     <MDBCollapse navbar show={showBasic}>
                         <MDBNavbarNav className="mr-auto mb-2 mb-lg-0 align-items-center justify-content-end">
                             <MDBNavbarItem className="navbar-items">
@@ -100,7 +78,7 @@ function HomeScreen() {
                                         aria-label="Search"
                                         size="sm"
                                     />
-                                    <MDBBtn color="primary">Search</MDBBtn>
+                                    <MDBBtn color="dark">Search</MDBBtn>
                                 </form>
                             </MDBNavbarItem>
                             <MDBNavbarItem className="navbar-items">
@@ -117,7 +95,7 @@ function HomeScreen() {
                             </MDBNavbarItem>
 
                             <MDBNavbarItem className="navbar-items">
-                                <MDBNavbarLink href="#">Posts</MDBNavbarLink>
+                                <MDBNavbarLink href="./collections">Collections</MDBNavbarLink>
                             </MDBNavbarItem>
 
                             <MDBNavbarItem className="navbar-items">
@@ -145,7 +123,6 @@ function HomeScreen() {
                                 size="2x"
                                 className="icons"
                             />
-                        
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBContainer>
@@ -330,25 +307,21 @@ function HomeScreen() {
                             ></MDBBtn>
                         </MDBModalHeader>
                         <MDBModalBody>
-                            <MDBInput
-                                label="Enter Collection Name"
-                                id="input1"
-                                type="text"
-                                className="input"
-                                name="text1"
-                                onChange={onChangeText}
-                            ></MDBInput>
-                            <MDBInput
-                                label="Enter Collection Symbol"
-                                id="input2"
-                                type="text"
-                                className="input"
-                                name="text2"
-                                onChange={onChangeText}
-                            ></MDBInput>
+                        <input
+                            type="text"
+                            placeholder="Collection Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Symbol"
+                            value={symbol}
+                            onChange={(e) => setSymbol(e.target.value)}
+                        />
                         </MDBModalBody>
                         <MDBModalFooter>
-                            <MDBBtn onClick={addPost}>Post</MDBBtn>
+                            <MDBBtn onClick={() => DeployCollection(name, symbol)}>Submit</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>

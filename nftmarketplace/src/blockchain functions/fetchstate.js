@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const { Zilliqa } = require("@zilliqa-js/zilliqa");
 const zilliqa = new Zilliqa("https://dev-api.zilliqa.com");
 // Standard fungible token deployed on devnet

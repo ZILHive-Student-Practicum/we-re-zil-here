@@ -1,12 +1,11 @@
-import axios from "axios";
-const { Zilliqa } = require("@zilliqa-js/zilliqa");
-const zilliqa = new Zilliqa("https://dev-api.zilliqa.com");
-
-let collection_contract_address=""
 
 function DeployNFT(NFTName,NFTSymbol){
+	
 	/* NFT contract Inits */
-	var	NftContractInits = [{
+    console.log(NFTName,NFTSymbol)
+	const owner= window.zilPay.wallet.defaultAccount.base16;
+	console.log(owner)
+    var	NftContractInits = [{
 		vname: 'contract_owner',
 		type: 'ByStr20',
 		value: '',
@@ -32,7 +31,7 @@ function DeployNFT(NFTName,NFTSymbol){
 
 	/* NFT contract Code */	
 	const NftContractCode = `
-	scilla_version 0
+	    scilla_version 0
 		(***************************************************)
 		(*               Associated library                *)
 		(***************************************************)
@@ -543,14 +542,13 @@ function DeployNFT(NFTName,NFTSymbol){
 	`;
 	/* NFT contract Code */
 
-    
-	const msgVersion = 1;
+
 	let currentNetwork = window.zilPay.wallet.net;
 	
 	let ChainId;
-	if(currentNetwork == "mainnet"){
+	if(currentNetwork === "mainnet"){
 		ChainId = 1;
-	}else if(currentNetwork == "testnet"){
+	}else if(currentNetwork === "testnet"){
 		ChainId = 333;
 	}else {
 		ChainId = prompt("You are not on testnet or mainnet. Please enter your chain ID:");
@@ -575,8 +573,7 @@ function DeployNFT(NFTName,NFTSymbol){
 	false,	//toDS or shard
 	).then(function(resp){
 		console.log("NFT Contract Deploy Transaction Sent.")
-		console.log(resp);
-		alert("Transaction Id: 0x" + resp[0].TranID);
+		console.log(resp[0].ContractAddress);
 	});
 }
 
