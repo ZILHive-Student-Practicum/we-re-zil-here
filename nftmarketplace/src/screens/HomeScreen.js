@@ -55,7 +55,7 @@ function HomeScreen() {
         setPosts((posts) => [...posts, post]);
     }
 
-    const DeployCollection = async (e) => {
+    const DeployCollection = async () => {
         await DeployNFT(name,symbol)
         toggleShow();
     };

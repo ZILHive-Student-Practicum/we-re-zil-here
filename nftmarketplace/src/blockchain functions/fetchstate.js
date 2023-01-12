@@ -1,11 +1,12 @@
 const { Zilliqa } = require("@zilliqa-js/zilliqa");
 const zilliqa = new Zilliqa("https://dev-api.zilliqa.com");
+
 // Standard fungible token deployed on devnet
 const nftContract = "0x89b08fca783f0ee47af6ef97409da1f6b733c899";
-const userAddress = "0x21e7dBB129a35025e09C7AA698407FC1432Fbfe1";
+//const userAddress = "";
 
 async function getNFTContractState(nft_contract, token_id) {
-  const balance_row = await getValueFromMapKey(nftContract, "balances", userAddress);
+  //const balance_row = await getValueFromMapKey(nftContract, "balances", userAddress);
   const token_owner_row = await getValueFromMapKey(nftContract, "token_owners", token_id);
   const base_uri = await getStaticValue(nftContract, "base_uri");
   const turi_tokenuri_set = await getValueFromMapKey(

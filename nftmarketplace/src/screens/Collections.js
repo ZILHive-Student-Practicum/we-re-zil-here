@@ -86,6 +86,7 @@ function Collections() {
                     </MDBCollapse>
                 </MDBContainer>
             </MDBNavbar>
+            
         </MDBContainer>
     );
 }
