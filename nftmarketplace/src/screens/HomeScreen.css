@@ -3,11 +3,11 @@
     /* background-color:bisque */
 }
 
-.title{
+/* .title{
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
-    font-size: 18px;
-}
+    font-size: 30px;
+} */
 /* h1{
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
@@ -38,8 +38,8 @@ p{
 .title{
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
-    /* padding-right: 20px; */
-    font-size: 19px;
+    /* padding-left: 20px; */
+    font-size: 40px;
     /* margin: 20px; */
 }
 /* .form-outline{

@@ -274,8 +274,8 @@ function HomeScreen() {
                         </MDBCol>
 
                         <MDBCol>
-                            <MDBBtn size="m" onClick={toggleShow}>
-                                Create Collection
+                            <MDBBtn size="sm" color='dark'onClick={toggleShow}>
+                                create a collection
                             </MDBBtn>
                         </MDBCol>
                     </MDBRow>

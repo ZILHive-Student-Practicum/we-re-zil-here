@@ -90,7 +90,7 @@ function Collections() {
                     </MDBCollapse>
                 </MDBContainer>
             </MDBNavbar>
-            <MDBBtn onClick={async() => {
+            <MDBBtn color='dark' onClick={async() => {
                 setCollection(await getCollections(window.zilPay.wallet.defaultAccount.base16))
             }}
             >View All Collections</MDBBtn>

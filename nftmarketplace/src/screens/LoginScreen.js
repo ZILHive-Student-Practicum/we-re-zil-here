@@ -64,7 +64,7 @@ function LoginScreen() {
             </p>
 
             <div className="text-center">
-                <MDBBtn className="mb-4 w-50" onClick={connectZilPay}>
+                <MDBBtn className="mb-4 w-50" color='dark'onClick={connectZilPay}>
                     Connect here
                 </MDBBtn>
             </div>
