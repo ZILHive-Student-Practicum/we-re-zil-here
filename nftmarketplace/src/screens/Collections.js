@@ -9,9 +9,10 @@ import {
     MDBNavbarLink,
     MDBBtn,
     MDBCollapse,
-    MDBRow,
-    MDBCol,
+    MDBCardBody,
+    MDBCardTitle,
     MDBInput,
+    MDBCard,
 } from "mdb-react-ui-kit";
 import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./Collections.css";
@@ -19,9 +20,9 @@ import getCollections from "../blockchain functions/fetchstate";
 
 function Collections() {
     const [showBasic, setShowBasic] = useState(false);
-    const owner1= "0x36b9df8c9d33231feb31627ea7df39ce15bb3cc5";
+    const [collection,setCollection]= useState([]);
     
-    return (
+      return (
         <MDBContainer>
             <MDBNavbar expand="lg" light bgColor="light">
                 <MDBContainer fluid>
@@ -90,8 +91,15 @@ function Collections() {
                 </MDBContainer>
             </MDBNavbar>
             <MDBBtn onClick={async() => {
-                await getCollections(window.zilPay.wallet.defaultAccount.base16)
-            }}>View All Collections</MDBBtn>
+                setCollection(await getCollections(window.zilPay.wallet.defaultAccount.base16))
+            }}
+            >View All Collections</MDBBtn>
+            <hr></hr>
+            <MDBCard>
+                {collection.map(item => (
+                    <MDBCardTitle>{item}</MDBCardTitle>
+                ))}
+            </MDBCard>
         </MDBContainer>
     );
 }
