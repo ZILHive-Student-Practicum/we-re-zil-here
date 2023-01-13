@@ -10,7 +10,6 @@ async function getCollections(user_address) {
     "collectionByUser",
     user_address
   );
-  console.log(deployed_contract_list)
 }
 
 async function getStaticValue(nftContract, contract_state_field) {
