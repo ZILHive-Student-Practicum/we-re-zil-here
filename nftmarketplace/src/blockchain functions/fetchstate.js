@@ -10,7 +10,7 @@ async function getCollections(user_address) {
     "collectionByUser",
     String(user_address).toLowerCase()
   );
-  //console.log(deployed_contract_list);
+  return deployed_contract_list["collectionByUser"][String(user_address).toLowerCase()]
 }
 
 async function getContractState() {
@@ -36,7 +36,7 @@ async function getValueFromMapKey(nftContract, contract_state_field, map_key) {
       chainResponse.result
     )}`
   );
-  return JSON.stringify(chainResponse.result);
+  return chainResponse.result;
 }
 
 export default getCollections;
