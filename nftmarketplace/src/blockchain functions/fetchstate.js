@@ -8,17 +8,17 @@ async function getCollections(user_address) {
   const deployed_contract_list = await getValueFromMapKey(
     nftContract,
     "collectionByUser",
-    user_address
+    String(user_address).toLowerCase()
   );
+  //console.log(deployed_contract_list);
 }
 
-async function getStaticValue(nftContract, contract_state_field) {
-  const chainResponse = await zilliqa.blockchain.getSmartContractSubState(
-    nftContract,
-    contract_state_field
+async function getContractState() {
+  const chainResponse = await zilliqa.blockchain.getSmartContractState(
+    nftContract
   );
   console.log(
-    `for call ${contract_state_field} : chain response, ${JSON.stringify(
+    `for call Contract State : chain response, ${JSON.stringify(
       chainResponse.result
     )}`
   );
