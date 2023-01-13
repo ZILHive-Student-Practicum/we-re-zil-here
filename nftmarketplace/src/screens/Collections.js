@@ -19,7 +19,8 @@ import getCollections from "../blockchain functions/fetchstate";
 
 function Collections() {
     const [showBasic, setShowBasic] = useState(false);
-    const owner= "0x36b9df8c9d33231feb31627ea7df39ce15bb3cc5";
+    const owner1= "0x36b9df8c9d33231feb31627ea7df39ce15bb3cc5";
+    
     return (
         <MDBContainer>
             <MDBNavbar expand="lg" light bgColor="light">
@@ -88,7 +89,9 @@ function Collections() {
                     </MDBCollapse>
                 </MDBContainer>
             </MDBNavbar>
-            <MDBBtn onClick={async() => await getCollections(owner)}>View All Collections</MDBBtn>
+            <MDBBtn onClick={async() => {
+                await getCollections(window.zilPay.wallet.defaultAccount.base16)
+            }}>View All Collections</MDBBtn>
         </MDBContainer>
     );
 }
