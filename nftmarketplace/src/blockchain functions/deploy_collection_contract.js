@@ -1,3 +1,4 @@
+import addToCollection from "./add_to_collections"
 
 function DeployNFT(NFTName,NFTSymbol){
 	
@@ -555,7 +556,7 @@ function DeployNFT(NFTName,NFTSymbol){
 	let VERSION = 0;
 	let myGasPrice = window.zilPay.utils.units.toQa('2000', window.zilPay.utils.units.Units.Li);
 
-
+	let deployed=""
 	//Create new contract object
 	let NewContract = window.zilPay.contracts.new(NftContractCode,NftContractInits);
 
@@ -570,9 +571,10 @@ function DeployNFT(NFTName,NFTSymbol){
 	1000,	//interval
 	false,	//toDS or shard
 	).then(function(resp){
-		console.log("NFT Contract Deploy Transaction Sent.")
-		console.log(resp[0].ContractAddress);
-	});
+		console.log("NFT Contract Deploy Transaction Sent.");
+		console.log(resp[0].ContractAddress)
+		deployed=String(resp[0].ContractAddress).toLowerCase()
+	}).then(async()=>{await addToCollection(deployed)});
 }
 
 export default DeployNFT;
