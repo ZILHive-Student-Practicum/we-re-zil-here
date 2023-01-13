@@ -20,7 +20,6 @@ import {
     MDBInput,
     MDBCollapse,
 } from "mdb-react-ui-kit";
-import getNFTContractState from "../blockchain functions/fetchstate";
 import DeployNFT from "../blockchain functions/deploy_collection_contract";
 import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./HomeScreen.css";
