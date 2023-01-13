@@ -3,8 +3,6 @@ function DeployNFT(NFTName,NFTSymbol){
 	
 	/* NFT contract Inits */
     console.log(NFTName,NFTSymbol)
-	const owner= window.zilPay.wallet.defaultAccount.base16;
-	console.log(owner)
     var	NftContractInits = [{
 		vname: 'contract_owner',
 		type: 'ByStr20',
