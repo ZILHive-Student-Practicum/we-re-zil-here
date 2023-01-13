@@ -13,16 +13,36 @@ import {
     MDBCardTitle,
     MDBInput,
     MDBCard,
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalFooter,
+    MDBModalBody,
 } from "mdb-react-ui-kit";
 import "../../node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./Collections.css";
 import getCollections from "../blockchain functions/fetchstate";
+import Dropdown from "./Dropdown";
 
 function Collections() {
     const [showBasic, setShowBasic] = useState(false);
-    const [collection,setCollection]= useState([]);
-    
-      return (
+    const [collection, setCollection] = useState([]);
+
+    // function getCollections() {
+    //     console.log("here");
+    //     setCollection(
+    //         getCollections(window.zilPay.wallet.defaultAccount.base16)
+    //     );
+    // }
+
+    // useEffect(() => {
+    //     setInterval(() => getCollections(), 1000);
+    // }, []);
+    const [postModal, setPostModal] = useState(false);
+    const toggleShow = () => setPostModal(!postModal);
+    return (
         <MDBContainer>
             <MDBNavbar expand="lg" light bgColor="light">
                 <MDBContainer fluid>
@@ -41,7 +61,7 @@ function Collections() {
                                         aria-label="Search"
                                         size="sm"
                                     />
-                                    <MDBBtn color='dark'>Search</MDBBtn>
+                                    <MDBBtn color="dark">Search</MDBBtn>
                                 </form>
                             </MDBNavbarItem>
                             <MDBNavbarItem className="navbar-items">
@@ -58,7 +78,9 @@ function Collections() {
                             </MDBNavbarItem>
 
                             <MDBNavbarItem className="navbar-items">
-                                <MDBNavbarLink href="./collections">Collections</MDBNavbarLink>
+                                <MDBNavbarLink href="./collections">
+                                    Collections
+                                </MDBNavbarLink>
                             </MDBNavbarItem>
 
                             <MDBNavbarItem className="navbar-items">
@@ -90,16 +112,64 @@ function Collections() {
                     </MDBCollapse>
                 </MDBContainer>
             </MDBNavbar>
-            <MDBBtn color='dark' onClick={async() => {
-                setCollection(await getCollections(window.zilPay.wallet.defaultAccount.base16))
-            }}
-            >View All Collections</MDBBtn>
-            <hr></hr>
-            <MDBCard>
+            <MDBBtn
+                color="dark"
+                onClick={async () => {
+                    setCollection(
+                        await getCollections(
+                            window.zilPay.wallet.defaultAccount.base16
+                        )
+                    );
+                }}
+            >
+                View All Collections
+            </MDBBtn>
+
+            {/* <MDBCard>
                 {collection.map(item => (
                     <MDBCardTitle>{item}</MDBCardTitle>
                 ))}
-            </MDBCard>
+            </MDBCard> */}
+            <div>
+                {collection.map((item, index) => (
+                    <Dropdown
+                        contractAddress={item}
+                        name={index}
+                        className="cards"
+                    />
+                ))}
+            </div>
+            <MDBModal tabIndex="-1" show={postModal} setShow={setPostModal}>
+                <MDBModalDialog centered>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <MDBModalTitle>Create a Collection</MDBModalTitle>
+                            <MDBBtn
+                                className="btn-close"
+                                color="none"
+                                onClick={toggleShow}
+                            ></MDBBtn>
+                        </MDBModalHeader>
+                        <MDBModalBody>
+                            {/* <input
+                            type="text"
+                            placeholder="Collection Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        /> */}
+                            {/* <input
+                            type="text"
+                            placeholder="Symbol"
+                            value={symbol}
+                            onChange={(e) => setSymbol(e.target.value)}
+                        /> */}
+                        </MDBModalBody>
+                        <MDBModalFooter>
+                            {/* <MDBBtn onClick={() => DeployCollection(name, symbol)}>Submit</MDBBtn> */}
+                        </MDBModalFooter>
+                    </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
         </MDBContainer>
     );
 }
